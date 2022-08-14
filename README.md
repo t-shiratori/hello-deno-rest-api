@@ -22,10 +22,10 @@ PORT=*** # Connection info Port
 
 ### Table Configuration
 
-| col name  	| type        	| value example                       	|
+| col name  	| type        	| value example                   |
 |-----------	|-------------	|-------------------------------	|
 | id        	| int8        	| 1                             	|
-| create_at 	| timestamptz 	| 2022-08-14 02:58:37.829165+00 	|
+| created_at 	| timestamptz 	| 2022-08-14 02:58:37.829165+00 	|
 | name      	| text        	| Jack                          	|
 
 
