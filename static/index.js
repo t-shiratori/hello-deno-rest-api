@@ -52,11 +52,11 @@ const deleteMember = async (id) => {
   }
 };
 
-const setOutputData = async () => {
+const renderOutputList = async () => {
   const response = await fetchMembers();
-  outputData.innerHTML = response.reduce(
+  outputList.innerHTML = response.reduce(
     (prev, current) =>
-      `${prev}<li><span class="id">[ID]: ${current.id}</span> <span class="name">[Name]: ${current.name}</span> <button data-id="${current.id}" data-type="delete" class="deleteButton" onclick="deleteMember()">削除</button></li>`,
+      `${prev}<li><span class="id">[ID]: ${current.id}</span> <span class="name">[Name]: ${current.name}</span> <button data-id="${current.id}" data-type="delete" class="deleteButton" onclick="deleteMember()">Delete</button></li>`,
     ''
   );
 };
@@ -66,28 +66,28 @@ const addNameInput = document.getElementById('addNameInput');
 const updateIdInput = document.getElementById('updateIdInput');
 const updateNameInput = document.getElementById('updateNameInput');
 const updateButton = document.getElementById('updateButton');
-const outputData = document.getElementById('outputData');
+const outputList = document.getElementById('outputList');
 
-// 削除ボタン
-outputData.addEventListener('click', async (e) => {
+// delete button
+outputList.addEventListener('click', async (e) => {
   const { id, type } = e.target.dataset;
   if (!id) return;
   console.log({ id, type });
   await deleteMember(id);
-  setOutputData();
+  renderOutputList();
 });
 
-// 追加ボタン
+// add button
 addButton.addEventListener('click', async () => {
   console.log(addNameInput.value);
   const { value } = addNameInput;
   if (!value) return;
   await postMember(value);
   addNameInput.value = '';
-  setOutputData();
+  renderOutputList();
 });
 
-// 更新ボタン
+// update button
 updateButton.addEventListener('click', async () => {
   console.log(updateNameInput.value);
   const { value: id } = updateIdInput;
@@ -96,9 +96,9 @@ updateButton.addEventListener('click', async () => {
   await updateMember(id, name);
   updateIdInput.value = '';
   updateNameInput.value = '';
-  setOutputData();
+  renderOutputList();
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  setOutputData();
+  renderOutputList();
 });

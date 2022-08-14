@@ -11,21 +11,20 @@ button {
 }
 
 #container {
-  min-width: 400px;
-  max-width: 600px;
+  max-width: 500px;
   margin: 0 auto;
 }
 
-#outputData {
-  margin-bottom: 30px;
-  padding-bottom: 20px;
+#outputList {
+  margin: 0 0 30px 0;
+  padding: 0 0 20px 0;
   border-bottom: solid 1px #ccc;
 }
 
 li {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   display: grid;
-  grid-template-columns: 1fr 3fr 60px;
+  grid-template-columns: 1fr 5fr 64px;
 }
 
 li .id,
