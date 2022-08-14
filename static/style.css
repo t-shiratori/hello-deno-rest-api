@@ -1,16 +1,31 @@
 body {
   padding: 20px;
 }
+
 input {
   padding: 4px;
 }
 
+button {
+  cursor: pointer;
+}
+
+#container {
+  min-width: 400px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
 #outputData {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: solid 1px #ccc;
 }
 
 li {
   margin-bottom: 5px;
+  display: grid;
+  grid-template-columns: 1fr 3fr 60px;
 }
 
 li .id,
@@ -23,7 +38,7 @@ label {
 }
 
 #addInputErea {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 #updateInputErea #updateIdInput {
