@@ -1,9 +1,8 @@
 import {
   Application,
   Router,
-  RouterContext,
   send,
-} from 'https://deno.land/x/oak@v6.5.0/mod.ts';
+} from 'https://deno.land/x/oak@v10.6.0/mod.ts';
 import { Client } from 'https://deno.land/x/postgres@v0.15.0/mod.ts';
 import { ENVS } from './dbEnvs.ts';
 
@@ -63,7 +62,7 @@ router.get('/static/:path+', async (ctx) => {
 });
 
 // Root Page Html
-router.get('/', async (ctx: RouterContext) => {
+router.get('/', async (ctx) => {
   await send(ctx, ctx.request.url.pathname, {
     root: `${Deno.cwd()}/static`,
     index: 'index.html',
@@ -73,7 +72,7 @@ router.get('/', async (ctx: RouterContext) => {
 /**
  * API
  */
-router.get('/api/v1/members', async (ctx: RouterContext) => {
+router.get('/api/v1/members', async (ctx) => {
   const result = await postgresClient.queryObject<TMember>(
     'select * from members'
   );
@@ -83,7 +82,7 @@ router.get('/api/v1/members', async (ctx: RouterContext) => {
   ctx.response.body = parsedData;
 });
 
-router.post('/api/v1/member', async (ctx: RouterContext) => {
+router.post('/api/v1/member', async (ctx) => {
   const reqBody = ctx.request.body();
   const requestData = await reqBody.value;
   console.log('requestData:', requestData);
@@ -94,7 +93,7 @@ router.post('/api/v1/member', async (ctx: RouterContext) => {
   ctx.response.body = result.rows;
 });
 
-router.delete('/api/v1/member/:id', async (ctx: RouterContext) => {
+router.delete('/api/v1/member/:id', async (ctx) => {
   console.log('ctx.params:', ctx.params);
   const { id } = ctx.params;
   const result = await postgresClient.queryObject<TMember>(
@@ -104,7 +103,7 @@ router.delete('/api/v1/member/:id', async (ctx: RouterContext) => {
   ctx.response.body = result.rows;
 });
 
-router.put('/api/v1/member/:id', async (ctx: RouterContext) => {
+router.put('/api/v1/member/:id', async (ctx) => {
   const { id } = ctx.params;
   const reqBody = ctx.request.body();
   const requestData = await reqBody.value;
