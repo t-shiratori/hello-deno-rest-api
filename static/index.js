@@ -1,6 +1,6 @@
 const fetchMembers = async () => {
   try {
-    const jsonResponse = await fetch('http://0.0.0.0:8080/api/v1/members');
+    const jsonResponse = await fetch('/api/v1/members');
     return await jsonResponse.json();
   } catch (error) {
     console.log('error', error);
@@ -10,7 +10,7 @@ const fetchMembers = async () => {
 const postMember = async (name) => {
   if (!name) return;
   try {
-    const jsonResponse = await fetch(`http://0.0.0.0:8080/api/v1/member/`, {
+    const jsonResponse = await fetch(`/api/v1/member/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -26,16 +26,13 @@ const postMember = async (name) => {
 const updateMember = async (id, name) => {
   if (!id || !name) return;
   try {
-    const jsonResponse = await fetch(
-      `http://0.0.0.0:8080/api/v1/member/${id}`,
-      {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name }),
-      }
-    );
+    const jsonResponse = await fetch(`/api/v1/member/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name }),
+    });
     return await jsonResponse.json();
   } catch (error) {
     console.log('error', error);
@@ -46,10 +43,9 @@ const deleteMember = async (id) => {
   console.log('deleteMember');
   if (!id) return;
   try {
-    const jsonResponse = await fetch(
-      `http://0.0.0.0:8080/api/v1/member/${id}`,
-      { method: 'DELETE' }
-    );
+    const jsonResponse = await fetch(`/api/v1/member/${id}`, {
+      method: 'DELETE',
+    });
     return await jsonResponse.json();
   } catch (error) {
     console.log('error', error);
